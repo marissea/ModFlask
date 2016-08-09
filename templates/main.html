@@ -1,10 +1,22 @@
 <!doctype html>
+
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block javascript %}
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+
+    <script type="text/javascript">
+    {% include "main.js" %}
+    </script>
+    {% endblock %}
     <title>Hello from Flask</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
     <link href="static/style.css" type="text/css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/ebe5abf147.js"></script>
 </head>
 <body>
+
 <!--    {% if name %}
     <h1>Hello {{ name }}!</h1>
     {% else %}
@@ -17,7 +29,7 @@
         <div class="flex-container">
 
             <button><i class="fa fa-check fa-lg"></i> Installed</button>
-            <button><i class="fa fa-search fa-lg" aria-hidden="true"></i> Find More</button>
+            <button><i class="fa fa-search fa-lg"></i> Find More</button>
             <button><i class="fa fa-gear fa-lg"></i> Options</button>
         </div>
 
@@ -28,43 +40,37 @@
     <div id="categories">
         <ul id="category-list">
             <li>
-                    <a href="">Category </a><button>12</button>
+                    <a href="#popup-container">Category </a><button>12</button>
             </li>
             <li>
                 Category1
             </li>
-            <li>
+            <li >
                 Category1
+            </li>
+            <li id="testowy">
+                Cats
             </li>
         </ul>
     </div>
     <div id="main">
+
         <div id="body-header">
             <button class="light-button double-border">Update All</button>
-            <select class="dropdown"><Option>
+            <select id="sort-select" class="dropdown"><Option  class="dropdown">
                 Sort by: TITLE
-            </Option><Option>
+            </Option ><Option  class="dropdown">
                 Sort by: DATE
             </Option></select>
-            <i id="search-icon" class="fa fa-search fa2x" aria-hidden="true"></i>
+            <i id="search-icon" class="fa fa-search fa2x"></i>
             <input id="search" btype="text" name="search" placeholder="Search..." />
         </div>
         <div id="addon-listing">
             <ul class="addons">
+                {% for item in addon_names %}
                 <li class="group">
-                    <div class="title">
-                        Title of Addon
-                    </div>
-                    <div>
-
-                    </div>
-                    <div class="install-button">
-                        <button class="light-button double-border install">Install</button>
-                    </div>
-                </li>
-                <li class="group">
-                    <div class="title">
-                        Title of Addon2
+                    <div class="title b-addon-click" id={{item}}>
+                        <a class="addon-link">{{item}}</a>
                     </div>
                     <div class="versions">
                         <p class="new">
@@ -78,7 +84,21 @@
                         <button class="light-button double-border install">Install</button>
                     </div>
                 </li>
+                {% endfor %}
+
             </ul>
+        </div>
+        <div id="popup-container" class="overlay">
+            <div class="a-popup">
+
+                <a class="close" href="#">×</a>
+                <div class="a-popup-content">
+                    <div id="a-popup-title">
+                        dsds
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
